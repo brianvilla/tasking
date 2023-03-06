@@ -6,6 +6,8 @@ import { createToDos } from './use-cases';
 const ElementsIDs = {
     Tasks: '#tasks',
     NewTask: '#new-task',
+    Dropdown: '#dropdown',
+    Menu: '#menu',
 }
 
 const Animations = {
@@ -40,8 +42,29 @@ export const App = ( elementId ) => {
     // DOM References
     const inputNewTask = document.querySelector( ElementsIDs.NewTask );
     const divTasks = document.querySelector( ElementsIDs.Tasks );
+    const iDropdown = document.querySelector( ElementsIDs.Dropdown );
+    const menu = document.querySelector( ElementsIDs.Menu );
 
     // Listeners
+    iDropdown.addEventListener('click', () => {
+
+        if ( menu.classList.contains('invisible')){
+            iDropdown.classList.remove('fa-chevron-down');
+            iDropdown.classList.add('fa-chevron-up');
+            menu.classList.remove('invisible');
+            menu.classList.remove('absolute');
+            menu.classList.add('animate__fadeInDown');
+        } else {
+            iDropdown.classList.remove('fa-chevron-up');
+            iDropdown.classList.add('fa-chevron-down');
+            menu.classList.add('invisible');
+            menu.classList.add('absolute');
+            menu.classList.remove('animate__fadeInDown');
+        }
+
+    });
+
+
     inputNewTask.addEventListener('keyup', ( event ) => {
         
         if( event.keyCode !== 13 ) return;

@@ -12,7 +12,7 @@ export const createToDoHTML = ( toDo, animation ) => {
     const { id, description, done } = toDo;
 
     const taskTemplate = `
-    <label class="text-black text-md sm:text-xl font-semibold overflow-x-hidden ${ done === true ? 'line-through' : '' } container-checkbox">${ description }
+    <label class="text-black text-md sm:text-xl font-semibold overflow-x-hidden container-checkbox">${ description }
         <input type="checkbox" ${ done ? 'checked' : ''}>
         <span class="checkmark ${ animation === 'animate__animated animate__fadeIn' ? 'animate__animated animate__fadeInLeft' : '' }"></span>
     </label>
@@ -22,7 +22,7 @@ export const createToDoHTML = ( toDo, animation ) => {
     `
     
     const container = document.createElement('div');
-    container.className = `group bg-white rounded-xl p-4 sm:p-6 pb-4 flex justify-between mb-4 transition ease-in-out delay-75 hover:cursor-pointer hover:shadow-md ${ animation }`;
+    container.className = `group ${ done ? 'line-through' : '' } bg-white rounded-xl p-4 sm:p-6 pb-4 flex justify-between mb-4 transition ease-in-out delay-75 hover:cursor-pointer hover:shadow-md ${ animation }`;
     container.innerHTML = taskTemplate;
     container.setAttribute('task-id', id );
 
