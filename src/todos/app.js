@@ -22,7 +22,7 @@ const Animations = {
 export const App = ( elementId ) => {
 
     /**
-     * 
+     * Displays the ToDos
      * @param {String} animation 
      */
     const renderToDos = ( animation ) => {
@@ -36,7 +36,7 @@ export const App = ( elementId ) => {
         app.className = 'md:flex md:h-5/6';
         app.innerHTML = html;
         document.querySelector(elementId).append( app );
-        renderToDos(Animations.loadTask);
+        renderToDos( Animations.loadTask );
     })();
 
     // DOM References
@@ -64,13 +64,12 @@ export const App = ( elementId ) => {
 
     });
 
-
     inputNewTask.addEventListener('keyup', ( event ) => {
         
         if( event.keyCode !== 13 ) return;
         if( event.target.value.trim().length === 0 ) return;
 
-        todoStore.addToDo( event.target.value );
+        todoStore.addToDo( event.target.value.toString() );
         renderToDos( Animations.newTask );
 
         event.target.value = '';
@@ -80,6 +79,9 @@ export const App = ( elementId ) => {
     divTasks.addEventListener('click', ( event ) => {
         
         const element = event.target.closest('[task-id]');
+
+        if ( !element ) return;
+
         todoStore.toggleToDo( element.getAttribute('task-id') );
         renderToDos();
 

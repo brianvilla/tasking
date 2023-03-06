@@ -5,7 +5,7 @@ import { createToDoHTML } from "./create-todo-html";
 let element;
 
 /**
- * Creates the toDos
+ * Creates the ToDos
  * @param {String} elementId 
  * @param {ToDo} toDos 
  * @param {TString} animation
