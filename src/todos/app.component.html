@@ -1,0 +1,94 @@
+<!-- menu -->
+<section class="bg-white w-full md:w-3/12 md:h-screen invisible absolute md:visible md:static p-6 md:p-8 font-semibold text-lg lg:text-2xl flex flex-col justify-between animate__animated">
+
+    <!-- options container -->
+    <div>
+
+        <!-- Themes -->
+        <div class="md:mt-4 text-center">
+            <button class="text-sm text-slate-500 hover:cursor-pointer bg-white transition ease-in-out delay-100 border hover:border-slate-300 p-2 rounded-md"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light</button>
+            <button class="text-sm text-slate-500 hover:cursor-pointer bg-white transition ease-in-out delay-100 border hover:border-slate-300 p-2 rounded-md"><i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark</button>
+        </div>
+
+        <!-- Mys tasks -->
+        <div class="mt-4 md:mt-32 p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>&#128517;&nbsp;&nbsp;My tasks</span>
+            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        </div>
+
+        <!-- Today -->
+        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>&#128531;&nbsp;&nbsp;Today</span>
+            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        </div>
+
+        <!-- Pending -->
+        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>&#128561;&nbsp;&nbsp;Pending</span>
+            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        </div>
+
+        <!-- Completed -->
+        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>&#128526;&nbsp;&nbsp;Completed</span>
+            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        </div>
+    </div>
+
+    <!-- links container -->
+    <div class="p-2 flex justify-center">
+        <!-- github -->
+        <a class="text-xs text-slate-500 transition ease-in-out delay-150 hover:scale-105 hover:underline" href="https://github.com/brianvilla"><i class="fa-brands fa-github"></i>&nbsp;https://github.com/brianvilla</a>
+    </div>
+
+</section>
+
+<!-- dropdown menu -->
+<section class="flex justify-center text-xl visible md:invisible p-8 animate__animated animate__fadeInDown">
+    
+    <!-- dropdown icon -->
+    <i class="fa-solid fa-chevron-down hover:cursor-pointer "></i>
+
+</section>
+
+<!-- tasks section -->
+<section class="md:flex md:flex-col mt-0 md:mt-10 bg-transparent md:h-5/6 w-full md:w-9/12 p-6 md:p-8 md:-ml-20">
+
+    <!-- header -->
+    <header class="w-full md:w-9/12 md:m-auto animate__animated animate__fadeInDown">
+
+        <!-- title -->
+        <h1 class="text-4xl md:text-6xl font-bold">My tasks!</h1>
+
+        <!-- sub-title -->
+        <h4 class="text-2xl md:text-2xl font-thin text-slate-400 mt-1">It's monday, Feb 27</h4>
+        
+    </header>
+
+    <!-- tasks container -->
+    <div class="w-full md:w-9/12 md:m-auto h-screen md:h-full">
+
+        <!-- create new task -->
+        <div class="bg-slate-200 rounded-xl mt-16 flex justify-between mb-10 hover:cursor-pointer p-1 md:p-0">
+            <label class="w-full text-black text-md sm:text-xl font-semibold container-checkbox animate__animated animate__fadeIn">
+                <input id="new-task" class="peer w-full p-4 sm:p-6 bg-transparent text-black text-sm sm:text-xl font-semibold hover:cursor-pointer focus:outline-none" type="text" placeholder="Write a new task">
+                <input class="animate__animated animate__fadeInLeft" type="checkbox">
+                <span class="invisible peer-focus:visible peer-focus:translate-x-3 sm:peer-focus:translate-x-6 transition ease-in-out delay-75 mt-3 sm:mt-6 checkmark"></span>
+            </label>
+        </div>
+
+        <!-- display tasks -->
+        <!-- <div id="tasks" class="w-full md:h-[53rem] oveflow-y-scroll scroll"> -->
+        <div id="tasks" class="w-full">
+
+            <!-- task -->
+            <!-- <div class="group bg-white rounded-xl p-4 sm:p-6 flex justify-between mb-4 transition ease-in-out delay-75 hover:cursor-pointer hover:shadow-md hover:z-10">
+                <div>
+                    <input class="mt-2 ml-3 animate__animated animate__fadeInLeft" type="checkbox">
+                    <span class="ml-6 text-black text-sm sm:text-xl animate__animated animate__fadeIn">This is a task...</span>
+                </div>
+                <span class="p-1 pl-2 pr-2 rounded-md text-red-500 invisible group-hover:visible text-md sm:text-2xl mr-3 transition ease-in-out delay-75 hover:scale-110 hover:bg-red-200"><i class="fa-regular fa-trash-can"></i></span>
+            </div> -->
+        </div>
+    </div>
+</section>
