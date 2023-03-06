@@ -5,25 +5,27 @@ import { createToDoHTML } from "./create-todo-html";
 let element;
 
 /**
- * 
+ * Creates the toDos
  * @param {String} elementId 
  * @param {ToDo} toDos 
  * @param {TString} animation
  */
 export const createToDos = ( elementId, toDos = [], animation ) => {
 
+    const sectionTasks = document.querySelector('#tasks-section');
+
     if( !element )
         element = document.querySelector( elementId );
 
     if( !element ) throw new Error(`Element ${ elementId } not found`);
 
-    // if( toDos.length > 9 ){
-    //     element.classList.add('overflow-y-scroll');
-    //     element.classList.add('scroll');
-    // } else {
-    //     element.classList.remove('overflow-y-scroll');
-    //     element.classList.remove('scroll');
-    // }
+    if( toDos.length > 10 ){
+        sectionTasks.classList.add('md:overflow-y-scroll');
+        // sectionTasks.classList.add('scroll');
+    } else {
+        sectionTasks.classList.remove('md:overflow-y-scroll');
+        // sectionTasks.classList.remove('scroll');
+    }
 
     element.innerHTML = '';
 

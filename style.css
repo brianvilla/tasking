@@ -7,7 +7,7 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-	background-color: rgb(226 232 240);
+	background-color: rgb(148 163 184);
     border-radius: 10px;
 }
 
