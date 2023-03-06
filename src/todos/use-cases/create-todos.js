@@ -21,10 +21,8 @@ export const createToDos = ( elementId, toDos = [], animation ) => {
 
     if( toDos.length > 10 ){
         sectionTasks.classList.add('md:overflow-y-scroll');
-        // sectionTasks.classList.add('scroll');
     } else {
         sectionTasks.classList.remove('md:overflow-y-scroll');
-        // sectionTasks.classList.remove('scroll');
     }
 
     element.innerHTML = '';

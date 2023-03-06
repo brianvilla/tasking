@@ -39,6 +39,7 @@ export const App = ( elementId ) => {
 
     // DOM References
     const inputNewTask = document.querySelector( ElementsIDs.NewTask );
+    const divTasks = document.querySelector( ElementsIDs.Tasks );
 
     // Listeners
     inputNewTask.addEventListener('keyup', ( event ) => {
@@ -50,6 +51,26 @@ export const App = ( elementId ) => {
         renderToDos( Animations.newTask );
 
         event.target.value = '';
+
+    });
+
+    divTasks.addEventListener('click', ( event ) => {
+        
+        const element = event.target.closest('[task-id]');
+        todoStore.toggleToDo( element.getAttribute('task-id') );
+        renderToDos();
+
+    });
+
+    divTasks.addEventListener('click', ( event ) => {
+
+        const isDeleteButton = event.target.id === 'delete-task';
+        const element = event.target.closest('[task-id]');
+        
+        if ( !element || !isDeleteButton) return;
+        
+        todoStore.deleteToDo( element.getAttribute('task-id') );
+        renderToDos();
 
     });
 }

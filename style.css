@@ -8,7 +8,7 @@
 
 .scroll::-webkit-scrollbar-thumb {
 	background-color: rgb(148 163 184);
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 /* Customize the label (the container) */

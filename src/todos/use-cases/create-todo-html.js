@@ -12,12 +12,12 @@ export const createToDoHTML = ( toDo, animation ) => {
     const { id, description, done } = toDo;
 
     const taskTemplate = `
-    <label class="text-black text-md sm:text-xl font-semibold container-checkbox">${ description }
+    <label class="text-black text-md sm:text-xl font-semibold overflow-x-hidden ${ done === true ? 'line-through' : '' } container-checkbox">${ description }
         <input type="checkbox" ${ done ? 'checked' : ''}>
         <span class="checkmark ${ animation === 'animate__animated animate__fadeIn' ? 'animate__animated animate__fadeInLeft' : '' }"></span>
     </label>
-    <button class="text-red-500 invisible group-hover:visible text-xl sm:text-2xl mr-3 transition ease-in-out delay-75 hover:scale-110">
-        <i class="fa-regular fa-trash-can"></i>
+    <button class="text-red-500 md:invisible group-hover:visible text-xl sm:text-2xl mr-3 transition ease-in-out delay-75 hover:scale-110">
+        <i id="delete-task" class="fa-regular fa-trash-can"></i>
     </button>
     `
     
