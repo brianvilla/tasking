@@ -10,7 +10,7 @@ const ElementsIDs = {
 
 const Animations = {
     newTask: 'animate__animated animate__slideInDown',
-    loadTask: 'animate__animated animate__fadeInLeft',
+    loadTask: 'animate__animated animate__fadeIn',
 }
 
 /**
@@ -34,7 +34,7 @@ export const App = ( elementId ) => {
         app.className = 'md:flex md:h-5/6';
         app.innerHTML = html;
         document.querySelector(elementId).append( app );
-        renderToDos();
+        renderToDos(Animations.loadTask);
     })();
 
     // DOM References
