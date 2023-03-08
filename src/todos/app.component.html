@@ -5,33 +5,33 @@
     <div>
 
         <!-- Themes -->
-        <div class="md:mt-4 text-center">
+        <div class="md:mt-4 text-center mb-4 md:mb-32">
             <button class="text-sm text-slate-500 hover:cursor-pointer bg-white transition ease-in-out delay-100 border hover:border-slate-300 p-2 rounded-md"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light</button>
             <button class="text-sm text-slate-500 hover:cursor-pointer bg-white transition ease-in-out delay-100 border hover:border-slate-300 p-2 rounded-md"><i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark</button>
         </div>
 
         <!-- Mys tasks -->
-        <div class="mt-4 md:mt-32 p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
-            <span>&#128517;&nbsp;&nbsp;My tasks</span>
-            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        <div id="filter" class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>😅&nbsp;&nbsp;My tasks</span>
+            <span id="counter" class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
         </div>
 
         <!-- Today -->
-        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
-            <span>&#128531;&nbsp;&nbsp;Today</span>
-            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        <div id="filter" class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>😓&nbsp;&nbsp;Today</span>
+            <span id="counter" class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
         </div>
 
         <!-- Pending -->
-        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
-            <span>&#128561;&nbsp;&nbsp;Pending</span>
-            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        <div id="filter" class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>😱&nbsp;&nbsp;Pending</span>
+            <span id="counter" class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
         </div>
 
         <!-- Completed -->
-        <div class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
-            <span>&#128526;&nbsp;&nbsp;Completed</span>
-            <span class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
+        <div id="filter" class="p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between">
+            <span>😎&nbsp;&nbsp;Completed</span>
+            <span id="counter" class="bg-slate-100 text-sm pt-2 pb-2 pl-3 pr-3 rounded-md text-slate-400">0</span>
         </div>
     </div>
 
@@ -55,14 +55,20 @@
 <section id="tasks-section" class="md:flex md:flex-col bg-transparent md:h-screen w-full md:w-9/12 md:p-8 md:-ml-20 md:overflow-y-scroll scroll">
 
     <!-- header -->
-    <header class="w-full md:w-9/12 md:m-auto animate__animated animate__fadeInDown">
+    <header id="header" class="w-full md:w-9/12 md:m-auto flex justify-between">
 
-        <!-- title -->
-        <h1 class="text-4xl md:text-6xl font-bold">My tasks!</h1>
-
-        <!-- sub-title -->
-        <h4 class="text-2xl md:text-2xl font-thin text-slate-400 mt-1">It's monday, Feb 27</h4>
+        <!-- <div class=""> -->
+            <!-- title -->
+        <!-- <h1 id="title" class="text-4xl md:text-6xl font-bold mt-10"></h1> -->
+    
+            <!-- sub-title -->
+            <!-- <h4 id="date" class="text-2xl md:text-2xl font-thin text-slate-400 mt-1">It's monday, Feb 27</h4> -->
+        <!-- </div> -->
         
+        <!-- <button id="clear" class="mt-10 h-14 text-red-500 font-semibold text-2xl border-red-500 px-4 rounded-md transition ease-in-out hover:bg-red-500 hover:text-white active:bg-red-700 animate__animated animate__fadeInRight">
+            <i id="delete-task" class="fa-regular fa-trash-can"></i>
+        </button> -->
+
     </header>
 
     <!-- tasks container -->

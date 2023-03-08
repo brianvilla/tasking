@@ -1,6 +1,6 @@
 import { ToDo } from "../todos/models/todo.model";
 
-const Filters = {
+export const Filters = {
     MyTasks: 'My Tasks',
     Today: 'Today',
     Pending: 'Pending',
@@ -18,26 +18,28 @@ const state = {
         new ToDo('Task #7'),
         new ToDo('Task #8'),
         new ToDo('Task #9'),
-        // new ToDo('Task #10'),
-        // new ToDo('Task #11'),
-        // new ToDo('Task #12'),
-        // new ToDo('Task #13'),
-        // new ToDo('Task #14'),
-        // new ToDo('Task #15'),
-        // new ToDo('Continue with the JS course'),
-        // new ToDo('Buy a TypeScript course!'),
-        // new ToDo('Watch "The Whale"'),
     ],
     filter: Filters.MyTasks,
 }
 
 const initStore = () => {
-    console.log(state);
+    
+    loadStore();
     console.log('InitStore');
 }
 
 const loadStore = () => {
-    throw new Error('Not implemented yet!');
+
+    if( !localStorage.getItem('state') ) return;
+
+    const { toDos = [], filter = Filters.MyTasks } = JSON.parse( localStorage.getItem('state'));
+    state.toDos = toDos;
+    state.filter = filter;
+
+}
+
+const saveStateToLocalStorage = () => {
+    localStorage.setItem( 'state', JSON.stringify(state) );
 }
 
 /**
@@ -53,6 +55,8 @@ const getToDos = ( filter = Filters.MyTasks ) => {
             return state.toDos.filter( toDo => toDo.done );
         case Filters.Pending:
             return state.toDos.filter( toDo => !toDo.done );
+        case Filters.Today:
+            return state.toDos.filter( toDo => !toDo.done && toDo.createdAt === Date() );
         default:
             throw new Error(`Option ${ filter } is not valid`);
     }
@@ -67,6 +71,8 @@ const addToDo = ( description ) => {
     
     if ( !description ) throw new Error(`${ description } is required`);
     state.toDos.push( new ToDo(description) );
+
+    saveStateToLocalStorage();
 
 }
 
@@ -83,6 +89,8 @@ const toggleToDo = ( toDoId ) => {
         return toDo;
     });
 
+    saveStateToLocalStorage();
+
 }
 
 /**
@@ -91,10 +99,12 @@ const toggleToDo = ( toDoId ) => {
  */
 const deleteToDo = ( toDoId ) => {
     state.toDos = state.toDos.filter( toDo => toDo.id !== toDoId );
+    saveStateToLocalStorage();
 }
 
 const clearCompleted = () => {
-    state.toDos = state.toDos.filter( toDo => toDo.done );
+    state.toDos = state.toDos.filter( toDo => !toDo.done );
+    saveStateToLocalStorage();
 }
 
 /**
@@ -103,6 +113,7 @@ const clearCompleted = () => {
  */
 const setFilter = ( newFilter = Filters.MyTasks ) => {
     state.filter = newFilter;
+    saveStateToLocalStorage();
 }
 
 const getCurrentFilter = () => {

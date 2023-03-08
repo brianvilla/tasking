@@ -1,13 +1,16 @@
 import html from './app.component.html?raw';
-import todoStore from '../store/todo.store'
-import { createToDos } from './use-cases';
+import todoStore, { Filters } from '../store/todo.store'
+import { createToDos, createTitle, dropDownBehavior } from './use-cases';
 
 
 const ElementsIDs = {
-    Tasks: '#tasks',
-    NewTask: '#new-task',
     Dropdown: '#dropdown',
     Menu: '#menu',
+    Tasks: '#tasks',
+    NewTask: '#new-task',
+    ClearButton: '#clear',
+    Filters: '#filter',
+    Header: '#header'
 }
 
 const Animations = {
@@ -26,9 +29,24 @@ export const App = ( elementId ) => {
      * @param {String} animation 
      */
     const renderToDos = ( animation ) => {
-        let toDos = todoStore.getToDos( todoStore.getCurrentFilter() );
-        toDos = toDos.reverse();
+        const toDos  = todoStore.getToDos( todoStore.getCurrentFilter() );
+        toDos.reverse();
         createToDos( ElementsIDs.Tasks, toDos, animation );
+        renderCounters();
+    }
+
+    const renderTitle = () => {
+        createTitle( ElementsIDs.Header );
+    }
+
+    const renderCounters = () => {
+
+        const spanCounter = document.querySelectorAll('#counter');
+
+        spanCounter[0].innerText = todoStore.getToDos( Filters.MyTasks ).length;
+        spanCounter[1].innerText = todoStore.getToDos( Filters.Today ).length;
+        spanCounter[2].innerText = todoStore.getToDos( Filters.Pending ).length;
+        spanCounter[3].innerText = todoStore.getToDos( Filters.Completed ).length;
     }
 
     (() => {
@@ -37,30 +55,21 @@ export const App = ( elementId ) => {
         app.innerHTML = html;
         document.querySelector(elementId).append( app );
         renderToDos( Animations.loadTask );
+        renderTitle();
     })();
-
+    
     // DOM References
-    const inputNewTask = document.querySelector( ElementsIDs.NewTask );
-    const divTasks = document.querySelector( ElementsIDs.Tasks );
     const iDropdown = document.querySelector( ElementsIDs.Dropdown );
     const menu = document.querySelector( ElementsIDs.Menu );
+    const inputNewTask = document.querySelector( ElementsIDs.NewTask );
+    const divTasks = document.querySelector( ElementsIDs.Tasks );
+    const divFilters = document.querySelectorAll( ElementsIDs.Filters );
+    // const btnClear = document.querySelector( ElementsIDs.ClearButton ); // TODO: Fix the clear completed function
 
     // Listeners
     iDropdown.addEventListener('click', () => {
 
-        if ( menu.classList.contains('invisible')){
-            iDropdown.classList.remove('fa-chevron-down');
-            iDropdown.classList.add('fa-chevron-up');
-            menu.classList.remove('invisible');
-            menu.classList.remove('absolute');
-            menu.classList.add('animate__fadeInDown');
-        } else {
-            iDropdown.classList.remove('fa-chevron-up');
-            iDropdown.classList.add('fa-chevron-down');
-            menu.classList.add('invisible');
-            menu.classList.add('absolute');
-            menu.classList.remove('animate__fadeInDown');
-        }
+        dropDownBehavior( menu, iDropdown );
 
     });
 
@@ -98,4 +107,70 @@ export const App = ( elementId ) => {
         renderToDos();
 
     });
+
+    // TODO: Fix bug
+    // btnClear.addEventListener('click', () => {  
+
+    //     todStore.clearCompleted();
+    //     renderToDos( Animations.loadTask );
+
+    // });
+
+    divFilters.forEach( element => {
+
+        element.addEventListener('click', event => {
+            
+            if( !event.target.id ){
+
+                divFilters.forEach( item => item.className = 'p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between' );
+                event.target.parentElement.className = 'p-2 md:p-4 bg-slate-100 rounded-lg cursor-pointer flex justify-between';
+                
+                switch ( event.target.textContent ) {
+                    case '😅  My tasks':
+                        todoStore.setFilter( Filters.MyTasks );
+                    break;
+                    case '😓  Today':
+                        todoStore.setFilter( Filters.Today );
+                    break;
+                    case '😱  Pending':
+                        todoStore.setFilter( Filters.Pending );
+                    break;
+                    case '😎  Completed':
+                        todoStore.setFilter( Filters.Completed );
+                    break;
+                }
+
+                renderTitle();
+                renderToDos( Animations.loadTask );
+
+            } else {
+
+                divFilters.forEach( item => item.className = 'p-2 md:p-4 transition ease-in delay-150 hover:bg-slate-100 rounded-lg cursor-pointer flex justify-between' );
+                event.target.className = 'p-2 md:p-4 bg-slate-100 rounded-lg cursor-pointer flex justify-between';
+                
+                switch ( event.target.firstElementChild.textContent ) {
+                    case '😅  My tasks':
+                        todoStore.setFilter( Filters.MyTasks );
+                    break;
+                    case '😓  Today':
+                        todoStore.setFilter( Filters.Today );
+                    break;
+                    case '😱  Pending':
+                        todoStore.setFilter( Filters.Pending );
+                    break;
+                    case '😎  Completed':
+                        todoStore.setFilter( Filters.Completed );
+                    break;
+                }
+
+                renderTitle();
+                renderToDos( Animations.loadTask );
+
+            }
+
+
+        });
+
+    });
+
 }
